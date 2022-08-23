@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="common/header :: common-header" />
+  <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <head th:replace="common/header :: navbar" />
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-6">
+          <form th:action="@{/transferir/betweenContas}" method="post">
+            <div class="form-group">
+              <label for="transferirDe"
+                >1. Selecione a conta que deseja transferir De</label
+              >
+              <select
+                class="form-control"
+                th:value="${transferirDe}"
+                name="transferirDe"
+                id="transferirDe"
+                required="required"
+              >
+                <option disabled="disabled" selected="selected">
+                  -- selecione sua conta --
+                </option>
+                <option value="Corrente">Corrente</option>
+                <option value="Poupanca">Poupança</option>
+              </select>
+              <br />
+            </div>
+
+            <div class="form-group">
+              <label for="transferidoPara"
+                >2. Selecione a conta que deseja transferir Para:</label
+              >
+              <select
+                class="form-control"
+                th:value="${transferidoPara}"
+                name="transferidoPara"
+                id="transferidoPara"
+                required="required"
+              >
+                <option disabled="disabled" selected="selected">
+                  -- selecione sua conta --
+                </option>
+                <option value="Corrente">Corrente</option>
+                <option value="Poupanca">Poupança</option>
+              </select>
+              <br />
+            </div>
+
+            <div class="form-group">
+              <label>3. Especifique o valor que deseja transferir: </label>
+              <span class="input-group-addon">Valor $</span>
+              <input th:value="${valor}" type="text" name="valor id="valor"
+              class="form-control" aria-label="Valor (Real(BRL))" />
+            </div>
+
+            <input
+              type="hidden"
+              name="${_csrf.parameterName}"
+              value="${_csrf.token}"
+            />
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+              Transferir
+            </button>
+          </form>
+
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="common/header :: body-bottom-scripts" />
+  </body>
+</html>

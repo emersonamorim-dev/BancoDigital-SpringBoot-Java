@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="common/header :: common-header" />
+  <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <head th:replace="common/header :: navbar" />
+    <div class="container">
+      <div class="row main">
+        <div class="col-md-6">
+          <h2 class="title">Meu Perfil</h2>
+          <hr />
+          <form method="post" th:action="@{/usuario/perfil}">
+            <input type="hidden" name="id" th:value="${user.userId}" />
+
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"
+                    ><i class="fa fa-user fa" aria-hidden="true"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.Nome}"
+                    id="Nome"
+                    name="Nome"
+                    roleId="Nome"
+                    placeholder="Digite seu Nome"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Sobrenome" class="cols-sm-2 control-label"
+                >Sobrenome</label
+              >
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"
+                    ><i class="fa fa-user fa" aria-hidden="true"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.sobrenome}"
+                    id="sobrenome"
+                    name="sobrenome"
+                    roleId="sobrenome"
+                    placeholder="Digite seu Sobrenome"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="telefone" class="cols-sm-2 control-label"
+                >Telefone</label
+              >
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"
+                    ><i class="fa fa-phone fa" aria-hidden="true"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.telefone}"
+                    id="telefone"
+                    name="telefone"
+                    roleId="telefone"
+                    placeholder="xx-xxxx-xxxx"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label"
+                >Seu Email</label
+              ><span class="bg-danger pull-right" th:if="${emailExists}"
+                >E-mail já existe</span
+              >
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"
+                    ><i class="fa fa-envelope fa" aria-hidden="true"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.email}"
+                    id="email"
+                    name="email"
+                    roleId="email"
+                    placeholder="Digite seu Email"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="cols-sm-2 control-label"
+                >Usuário</label
+              ><span class="bg-danger pull-right" th:if="${usernameExists}"
+                >Usuário já existe</span
+              >
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"
+                    ><i class="fa fa-users fa" aria-hidden="true"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.username}"
+                    id="username"
+                    name="username"
+                    roleId="username"
+                    placeholder="Digite seu Usuário"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">
+                Mudar configurações
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="panel-heading">
+            <div class="panel-title text-center">
+              <h1 class="title">Informações da sua conta</h1>
+              <hr />
+            </div>
+            <table class="responstable">
+              <tr>
+                <th>Número da Conta Corrente</th>
+                <th>Número da Conta Poupança</th>
+              </tr>
+
+              <tr>
+                <td data-th-text="${user.contaCorrente.numeroConta}">...</td>
+                <td data-th-text="${user.contPoupanca.numeroConta}">...</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="common/header :: body-bottom-scripts" />
+  </body>
+</html>

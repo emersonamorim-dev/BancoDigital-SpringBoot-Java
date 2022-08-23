@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="common/header :: common-header" />
+  <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <head th:replace="common/header :: navbar" />
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-6">
+          <form th:action="@{/conta/saque}" method="post">
+            <div class="form-group">
+              <label for="tipoConta"
+                >1. Por favor, selecione a conta que você gostaria de
+                sacar:</label
+              >
+              <select
+                class="form-control"
+                th:value="${tipoConta}"
+                name="tipoConta"
+                id="tipoConta"
+                required="required"
+              >
+                <option disabled="disabled" selected="selected">
+                  -- selecione sua conta --
+                </option>
+                <option>Conta Corrente</option>
+                <option>Conta Poupança</option>
+              </select>
+              <br />
+            </div>
+
+            <div class="form-group">
+              <label
+                >2. Por favor, especifique o valor que você gostaria de sacar:
+              </label>
+              <span class="input-group-addon">Valor R$</span>
+              <input
+                th:value="${valor}"
+                type="text"
+                name="valor"
+                id="valor"
+                class="form-control"
+                aria-label="Valor (R$ - BRL)"
+              />
+            </div>
+
+            <input
+              type="hidden"
+              name="${_csrf.parameterName}"
+              value="${_csrf.token}"
+            />
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+              Sacar
+            </button>
+          </form>
+
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="common/header :: body-bottom-scripts" />
+  </body>
+</html>
